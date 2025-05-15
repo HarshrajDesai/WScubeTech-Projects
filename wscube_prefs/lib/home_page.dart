@@ -9,7 +9,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  SharedPreferences? _prefs;
   Color? color;
   int? appStartCount;
   bool isLoading = true; 
@@ -21,16 +21,16 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> getAppStartCount() async {
-    final SharedPreferences prefs = await _prefs;
-    int? count = prefs.getInt('appStartCount');
+    _prefs = await SharedPreferences.getInstance();
+    int? count = _prefs!.getInt('appStartCount');
     print(count);
 
     if (count == null) {
-      await prefs.setInt('appStartCount', 0);
+      await _prefs!.setInt('appStartCount', 0);
       count = 0;
     } else {
       count += 1;
-      await prefs.setInt('appStartCount', count);
+      await _prefs!.setInt('appStartCount', count);
     }
 
     Color bgColor;

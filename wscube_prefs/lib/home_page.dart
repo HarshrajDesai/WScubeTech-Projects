@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
   Future<void> getAppStartCount() async {
     final SharedPreferences prefs = await _prefs;
     int? count = prefs.getInt('appStartCount');
+    print(count);
 
     if (count == null) {
       await prefs.setInt('appStartCount', 0);

@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
     } else if (count % 3 == 0) {
       bgColor = Colors.blueAccent;
     } else if (count % 5 == 0) {
-      bgColor = Colors.cyanAccent;
+      bgColor = Colors.redAccent;
     } else {
       bgColor = Colors.orangeAccent;
     }
@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Text(
                               "App opened $appStartCount times",
-                              style: const TextStyle(color: Colors.black),
+                              style: const TextStyle(color: Colors.white),
                             ),
                           ],
                         ),

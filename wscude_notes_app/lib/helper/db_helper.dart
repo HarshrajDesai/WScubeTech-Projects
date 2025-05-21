@@ -55,4 +55,17 @@ class DbHelper {
     return db.query(TABLE_NAME);
   }
 
+  void deleteNote(int id) async{
+    var db = await initDb();
+    db.delete(TABLE_NAME, where: "$COLUMN_NOTE_ID = ?", whereArgs: ["$id"]);
+  }
+
+  void updateNote(int id, {String? title, String? desc}) async{
+    var db = await initDb();
+    db.update(TABLE_NAME, {
+      COLUMN_NOTE_TITLE: title,
+      COLUMN_NOTE_DESC: desc
+    }, where: "$COLUMN_NOTE_ID = ?", whereArgs: ["$id"]);
+  }
+
 }

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:intl/intl.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -9,6 +10,7 @@ class DbHelper {
   static const String COLUMN_NOTE_ID = "note_id";
   static const String COLUMN_NOTE_TITLE = "note_title";
   static const String COLUMN_NOTE_DESC = "note_desc";
+  static const String COLUMN_NOTE_DATE = "note_created_at";
 
   DbHelper._();
 
@@ -36,7 +38,7 @@ class DbHelper {
       version: 1,
       onCreate:
           (db, version) => db.execute(
-            "create table $TABLE_NAME($COLUMN_NOTE_ID integer primary key autoincrement, $COLUMN_NOTE_TITLE text, $COLUMN_NOTE_DESC text)",
+            "create table $TABLE_NAME($COLUMN_NOTE_ID integer primary key autoincrement, $COLUMN_NOTE_TITLE text, $COLUMN_NOTE_DESC text, $COLUMN_NOTE_DATE text)",
           ),
     );
   }
@@ -46,7 +48,8 @@ class DbHelper {
     
     db.insert(TABLE_NAME, {
       COLUMN_NOTE_TITLE: title,
-      COLUMN_NOTE_DESC: desc
+      COLUMN_NOTE_DESC: desc,
+      COLUMN_NOTE_DATE: DateTime.now().microsecondsSinceEpoch.toString()
     });
   }
 

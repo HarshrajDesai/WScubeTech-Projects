@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wscude_notes_app/routes/app_routes.dart';
 import 'package:wscude_notes_app/screen/home_page.dart';
 
 void main() {
@@ -14,9 +15,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Notes',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
       ),
-      home: const HomePage(),
+      initialRoute: AppRoutes.home,
+      routes: AppRoutes.getRoutes(),
       debugShowCheckedModeBanner: false,
     );
   }
